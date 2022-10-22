@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="app.js"></script>
+    <title>My Project</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="bill">
+        <div class="back-icon">
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </div>
+
+        <span>Danh sách nước uống</span>
+        <ul class="list">
+          <li class="item" value="15000" id="1">Cà phê đá</li>
+          <li class="item" value="20000" id="2">Cà phê sữa</li>
+          <li class="item" value="30000" id="3">Cam vắt</li>
+          <li class="item" value="20000" id="4">Chanh muối</li>
+          <li class="item" value="15000" id="5">Nước ngọt</li>
+          <li class="item" value="10000" id="6">Nước suối</li>
+        </ul>
+
+        <div class="selection">
+          <div class="input-radio">
+            <input type="radio" name="select" id="daytime" value="Ban ngày" />
+            <label for="daytime">Ban ngày</label><br />
+          </div>
+          <div class="input-radio">
+            <input type="radio" name="select" id="night" value="Ban đêm" />
+            <label for="night">Ban đêm</label><br />
+          </div>
+        </div>
+
+        <button class="btn">Thành tiền</button>
+
+        <div class="detail-box">
+          <table class="detail">
+            <tr class="head">
+              <th>STT</th>
+              <th>Các món đã chọn</th>
+              <th>Tiền</th>
+            </tr>
+            <!-- <tr>
+              <td colspan="2">Tổng tiền</td>
+              <td class="sumPrice">0</td>
+            </tr> -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
