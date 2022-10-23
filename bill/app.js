@@ -3,7 +3,19 @@ let add = 0;
 $(document).ready(function () {
   handleAddItems();
   handleSelect();
-  handlePayment();
+  $(".btn").click(function () {
+    handlePayment();
+  });
+  const temp = `<div class="sweet-alert">
+  <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+  <span>This function has not been coded yet !</span>
+</div>`;
+
+  $(document).on("click", ".trash", function () {
+    if ($(".sweet-alert")) $(".sweet-alert").remove();
+    $this = $(this);
+    $("body").append(temp);
+  });
 });
 
 function handleAddItems() {
@@ -12,28 +24,31 @@ function handleAddItems() {
   $("li").each(function () {
     let $this = $(this);
     $this.click(function () {
+      $(".tong-tien").remove();
+      $(".detail-box").css("display", "block");
       moneyTotal += parseInt($this.attr("value"));
-      console.log(moneyTotal);
       const idItem = $(this)[0];
       if (!arr.find((item) => item == idItem.id)) {
         arr.push(idItem.id);
-        console.log(arr);
-        console.log($this.attr("id"));
         $("table").append(`<tr id=${$this.attr("id")}>
         <td>${index}</td>
         <td>${$this.text()}</td>
+        <td>1</td>
         <td>${$this.attr("value")}</td>
+        <td><div class="trash"> <i class="fa-solid fa-trash"></i> </div></td>
         </tr>`);
         index++;
       } else {
-        console.log("idItem ", idItem);
         const arrTable = $("table").find("tr");
         arrTable.each(function () {
           $item = $(this);
           if ($item.attr("id") === idItem.id) {
             const temp = $item[0];
-            const value = temp.children[2];
+            const value = temp.children[3];
             const price = parseInt(value.textContent) + idItem.value;
+            const count = temp.children[2];
+            const tempCount = price / idItem.value;
+            count.textContent = `${tempCount}`;
             value.textContent = `${price}`;
           }
         });
@@ -46,7 +61,7 @@ function handleSelect() {
   $("input").each(function () {
     let $this = $(this);
     $this.click(function () {
-      if ($this.attr("id") === "daytime") add = 0.2;
+      if ($this.attr("id") === "night") add = 0.2;
       else add = 0;
     });
   });
@@ -54,12 +69,11 @@ function handleSelect() {
 }
 
 function handlePayment() {
-  $(".btn").click(function () {
-    moneyTotal += moneyTotal * add;
-    $(".detail-box").css("display", "block");
-    $("table").css("display", "auto").append(`<tr>
-    <td colspan="2">Tổng tiền</td>
-    <td class="sumPrice">${moneyTotal}</td>
+  $(".selection").css({ opacity: "0.3", "pointer-events": "none" });
+  let temp = moneyTotal + moneyTotal * add;
+  $(".tong-tien").remove();
+  $("table").css("display", "auto").append(`<tr class="tong-tien">
+    <td colspan="3" class="tongtien">Tổng tiền</td>
+    <td colspan="2">${temp}</td>
   </tr>`);
-  });
 }
