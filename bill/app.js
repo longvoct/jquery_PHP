@@ -23,11 +23,13 @@ function handleAddItems() {
   let arr = new Array();
   $("li").each(function () {
     let $this = $(this);
+    console.log($this);
     $this.click(function () {
       $(".tong-tien").remove();
       $(".detail-box").css("display", "block");
       moneyTotal += parseInt($this.attr("value"));
       const idItem = $(this)[0];
+      console.log(" idItem: ", idItem);
       if (!arr.find((item) => item == idItem.id)) {
         arr.push(idItem.id);
         $("table").append(`<tr id=${$this.attr("id")}>
@@ -40,8 +42,10 @@ function handleAddItems() {
         index++;
       } else {
         const arrTable = $("table").find("tr");
+        console.log(arrTable);
         arrTable.each(function () {
           $item = $(this);
+          console.log("$item ", $item);
           if ($item.attr("id") === idItem.id) {
             const temp = $item[0];
             const value = temp.children[3];
